@@ -1,3 +1,17 @@
-todos
-1. main.dart
-2. 
+todos #1: firestore_cli configure
+todos #2: l10n
+todos #3: models
+todos #4: constants
+todos #5: extension
+todos #6: exceptions
+todos #7: enum
+todos #8: provider
+todos #9: firebase
+todos #10: services
+todos #11: bloc
+todos #12: utilities
+todos #13: helper
+todos #14: view
+todos #15: app
+todos #16: bootstrap.dart
+todos #17: main.dart

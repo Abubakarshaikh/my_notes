@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:my_notes/extensions/buildcontext/loc.dart';
-import 'package:my_notes/services/auth/auth_service.dart';
-import 'package:my_notes/utilities/dialogs/cannot_share_empty_note_dialog.dart';
-import 'package:my_notes/utilities/generics/get_arguments.dart';
-import 'package:my_notes/services/cloud/cloud_note.dart';
-import 'package:my_notes/services/cloud/firebase_cloud_storage.dart';
+import 'package:my_notes/extension/buildcontext/loc.dart';
+import 'package:my_notes/extension/generics/get_arguments.dart';
 import 'package:share_plus/share_plus.dart';
+
+import '../../firebase/firebase_cloud_storage.dart';
+import '../../models/cloud_note.dart';
+import '../../services/auth_service.dart';
+import '../../utilities/dialogs/cannot_share_empty_note_dialog.dart';
 
 class CreateUpdateNoteView extends StatefulWidget {
   const CreateUpdateNoteView({Key? key}) : super(key: key);
@@ -18,13 +19,6 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   CloudNote? _note;
   late final FirebaseCloudStorage _notesService;
   late final TextEditingController _textController;
-
-  @override
-  void initState() {
-    _notesService = FirebaseCloudStorage();
-    _textController = TextEditingController();
-    super.initState();
-  }
 
   void _textControllerListener() async {
     final note = _note;
@@ -82,6 +76,13 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   }
 
   @override
+  void initState() {
+    _notesService = FirebaseCloudStorage();
+    _textController = TextEditingController();
+    super.initState();
+  }
+
+  @override
   void dispose() {
     _deleteNoteIfTextIsEmpty();
     _saveNoteIfTextNotEmpty();
@@ -93,9 +94,7 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          context.loc.note,
-        ),
+        title: Text(context.loc.note),
         actions: [
           IconButton(
             onPressed: () async {

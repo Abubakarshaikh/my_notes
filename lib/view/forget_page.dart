@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_notes/extensions/buildcontext/loc.dart';
-import 'package:my_notes/services/auth/bloc/auth_bloc.dart';
-import 'package:my_notes/services/auth/bloc/auth_event.dart';
-import 'package:my_notes/services/auth/bloc/auth_state.dart';
-import 'package:my_notes/utilities/dialogs/error_dialog.dart';
-import 'package:my_notes/utilities/dialogs/password_reset_email_sent_dialog.dart';
+import 'package:my_notes/bloc/auth_bloc.dart';
+import 'package:my_notes/extension/buildcontext/loc.dart';
+import '../utilities/dialogs/error_dialog.dart';
+import '../utilities/dialogs/password_reset_email_sent_dialog.dart';
 
-class ForgotPasswordView extends StatefulWidget {
-  const ForgotPasswordView({Key? key}) : super(key: key);
+class ForgetPasswordPage extends StatefulWidget {
+  const ForgetPasswordPage({Key? key}) : super(key: key);
 
   @override
-  _ForgotPasswordViewState createState() => _ForgotPasswordViewState();
+  _ForgetPasswordPageState createState() => _ForgetPasswordPageState();
 }
 
-class _ForgotPasswordViewState extends State<ForgotPasswordView> {
+class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   late final TextEditingController _controller;
-
   @override
   void initState() {
     _controller = TextEditingController();
@@ -38,6 +35,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
             _controller.clear();
             await showPasswordResetSentDialog(context);
           }
+
           if (state.exception != null) {
             await showErrorDialog(
               context,
@@ -47,17 +45,13 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
         }
       },
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(context.loc.forgot_password),
-        ),
+        appBar: AppBar(title: Text(context.loc.forgot_password)),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(
-                  context.loc.forgot_password_view_prompt,
-                ),
+                Text(context.loc.forgot_password_view_prompt),
                 TextField(
                   keyboardType: TextInputType.emailAddress,
                   autocorrect: false,

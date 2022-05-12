@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:my_notes/extensions/buildcontext/loc.dart';
-import 'package:my_notes/services/auth/auth_exceptions.dart';
-import 'package:my_notes/services/auth/bloc/auth_bloc.dart';
-import 'package:my_notes/services/auth/bloc/auth_event.dart';
-import 'package:my_notes/services/auth/bloc/auth_state.dart';
-import 'package:my_notes/utilities/dialogs/error_dialog.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_notes/bloc/auth_bloc.dart';
+import 'package:my_notes/extension/buildcontext/loc.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({Key? key}) : super(key: key);
+import '../../exceptions/auth_exceptions.dart';
+import '../utilities/dialogs/error_dialog.dart';
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginPageState extends State<LoginPage> {
   late final TextEditingController _email;
   late final TextEditingController _password;
 

@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:my_notes/constants/routes.dart';
-import 'package:my_notes/enums/menu_action.dart';
-import 'package:my_notes/extensions/buildcontext/loc.dart';
-import 'package:my_notes/services/auth/auth_service.dart';
-import 'package:my_notes/services/auth/bloc/auth_bloc.dart';
-import 'package:my_notes/services/auth/bloc/auth_event.dart';
-import 'package:my_notes/services/cloud/cloud_note.dart';
-import 'package:my_notes/services/cloud/firebase_cloud_storage.dart';
-import 'package:my_notes/utilities/dialogs/logout_dialog.dart';
-import 'package:my_notes/views/notes/notes_list_view.dart';
-import 'package:flutter_bloc/flutter_bloc.dart' show ReadContext;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_notes/extension/buildcontext/loc.dart';
+import 'package:my_notes/extension/get_length.dart';
+import '../../bloc/auth_bloc.dart';
+import '../../constants/routes.dart';
+import '../../enum/menu_action.dart';
+import '../../firebase/firebase_cloud_storage.dart';
+import '../../models/cloud_note.dart';
+import '../../services/auth_service.dart';
+import '../../utilities/dialogs/logout_dialog.dart';
+import 'notes_list_view.dart';
 
-extension Count<T extends Iterable> on Stream<T> {
-  Stream<int> get getLength => map((event) => event.length);
-}
-
-class NotesView extends StatefulWidget {
-  const NotesView({Key? key}) : super(key: key);
+class NotesPage extends StatefulWidget {
+  const NotesPage({Key? key}) : super(key: key);
 
   @override
-  _NotesViewState createState() => _NotesViewState();
+  _NotesPageState createState() => _NotesPageState();
 }
 
-class _NotesViewState extends State<NotesView> {
+class _NotesPageState extends State<NotesPage> {
   late final FirebaseCloudStorage _notesService;
   String get userId => AuthService.firebase().currentUser!.id;
 
@@ -75,7 +71,7 @@ class _NotesViewState extends State<NotesView> {
                 ),
               ];
             },
-          )
+          ),
         ],
       ),
       body: StreamBuilder(

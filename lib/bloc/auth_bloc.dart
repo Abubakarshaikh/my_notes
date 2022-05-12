@@ -1,7 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:my_notes/services/auth/auth_provider.dart';
-import 'package:my_notes/services/auth/bloc/auth_event.dart';
-import 'package:my_notes/services/auth/bloc/auth_state.dart';
+import '../provider/auth_provider.dart';
+import 'package:flutter/foundation.dart' show immutable;
+import 'package:equatable/equatable.dart';
+import '../models/auth_user.dart';
+
+part 'auth_state.dart';
+part 'auth_event.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(AuthProvider provider)
@@ -12,7 +16,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         isLoading: false,
       ));
     });
-    //forgot password
     on<AuthEventForgotPassword>((event, emit) async {
       emit(const AuthStateForgotPassword(
         exception: null,
@@ -21,10 +24,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ));
       final email = event.email;
       if (email == null) {
-        return; // user just wants to go to forgot-password screen
+        return;
       }
 
-      // user wants to actually send a forgot-password email
       emit(const AuthStateForgotPassword(
         exception: null,
         hasSentEmail: false,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_notes/extensions/buildcontext/loc.dart';
-import 'package:my_notes/utilities/dialogs/generic_dialog.dart';
+import 'package:my_notes/extension/buildcontext/loc.dart';
+
+import 'generic_dialog.dart';
 
 Future<void> showErrorDialog(
   BuildContext context,

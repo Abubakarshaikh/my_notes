@@ -60,7 +60,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '256489545026',
     projectId: 'todos-1f195',
     storageBucket: 'todos-1f195.appspot.com',
-    iosClientId: '256489545026-28mn6g7fa04ls4v7d618jr3qd4nin3m1.apps.googleusercontent.com',
+    iosClientId:
+        '256489545026-28mn6g7fa04ls4v7d618jr3qd4nin3m1.apps.googleusercontent.com',
     iosBundleId: 'com.example.myNotes',
   );
 }

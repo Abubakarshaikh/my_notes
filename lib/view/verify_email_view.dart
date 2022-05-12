@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:my_notes/extensions/buildcontext/loc.dart';
-import 'package:my_notes/services/auth/bloc/auth_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_notes/services/auth/bloc/auth_event.dart';
+import 'package:my_notes/extension/buildcontext/loc.dart';
 
-class VerifyEmailView extends StatefulWidget {
-  const VerifyEmailView({Key? key}) : super(key: key);
+import '../bloc/auth_bloc.dart';
+
+class VerifyEmailPage extends StatefulWidget {
+  const VerifyEmailPage({Key? key}) : super(key: key);
 
   @override
-  _VerifyEmailViewState createState() => _VerifyEmailViewState();
+  _VerifyEmailPageState createState() => _VerifyEmailPageState();
 }
 
-class _VerifyEmailViewState extends State<VerifyEmailView> {
+class _VerifyEmailPageState extends State<VerifyEmailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
